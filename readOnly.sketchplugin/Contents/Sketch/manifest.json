@@ -1,0 +1,25 @@
+{
+  "author" : "Lois Yang",
+  "commands" : [
+    {
+      "script" : "script.cocoascript",
+      "name" : "Toggle Read Only Mode",
+      "shortcut" : "ctrl cmd r",
+      "handlers" : {
+        "run" : "onRun"
+      },
+      "identifier" : "com.bohemiancoding.sketch.runscriptidentifier"
+    }
+  ],
+  "menu" : {
+    "items" : [
+      "com.bohemiancoding.sketch.runscriptidentifier"
+    ],
+    "title" : "Read Only Mode"
+  },
+  "identifier" : "com.example.sketch.44002cf6-a99d-46d1-b483-6d94fdf16ebd",
+  "version" : "1.0",
+  "description" : "",
+  "authorEmail" : "jingqiy@andrew.cmu.edu",
+  "name" : "readOnly"
+}
