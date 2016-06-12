@@ -1,16 +1,33 @@
 var onRun = function(context) {
-  	var artboards = context.document.currentPage().artboards()
+    var document = context.document
+  	var artboards = document.currentPage().artboards()
   	var artboardCount = artboards.count()
+    var readOnlyModeOn
 
+// Lock all layers on each artboard
 	for (var i=0; i<artboardCount; i++) {
-    	var artboard = artboards[i]
-    	var layers = artboards[i].layers();
-    	var layerCount = layers.count();
+    var artboard = artboards[i]
+  	var layers = artboards[i].layers();
+  	var layerCount = layers.count();
+  	for (var j=0; j<layerCount; j++) {
+      var layer = layers.objectAtIndex(j);
+      if (i==0 && j==0){
+        readOnlyModeOn = layer.isLocked();
+      }
+      layer.setIsLocked(!readOnlyModeOn);
+    }
+  }
 
-    	for (var j=0; j<layerCount; j++) {
-        	var layer = layers.objectAtIndex(j);
-        		layer.setIsLocked(!layer.isLocked());
-    	}
-  	}
+// Mode change finished. We switch the mode status.
+  readOnlyModeOn = !readOnlyModeOn
+
+// Show a message to users if the mode changes.
+  if (readOnlyModeOn) {
+    message = "Read-only mode is on."
+    document.showMessage(message);
+  } else{
+    document.hideMessage();
+  }
+
 
 };
